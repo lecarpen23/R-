@@ -1,0 +1,9 @@
+pollutantmean <- function(directory, pollutant, id = 1:332) {
+  #puts filenames in the correct format. d - decimal, 3 - number of digits, 0 - leading space is 0
+  filenames <- sprintf("%03d.csv", id)
+  ldf <- lapply(filenames, read.csv)
+  #ldply is a package that has to be imported
+  df=ldply(ldf)
+  pollmean <- mean(df[, pollutant], na.rm = TRUE)
+  pollmean
+}
